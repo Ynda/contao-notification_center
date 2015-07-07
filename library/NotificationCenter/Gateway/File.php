@@ -173,7 +173,8 @@ class File extends Base implements GatewayInterface
 
         $objFile = new \File($this->objModel->file_path . '/' . $strFileName);
 
-        if ($strStorageMode === self::FILE_STORAGE_APPEND) {
+        if ($strStorageMode === self::FILE_STORAGE_APPEND
+            && is_file(TL_ROOT . '/' . $this->objModel->file_path . '/' . $strFileName)) {
             $strContent = $objFile->getContent() . "\n" . $strContent;
         }
 
